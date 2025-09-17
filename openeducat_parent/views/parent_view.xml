@@ -52,10 +52,6 @@
                                 class="oe_highlight"
                                 invisible="user_id != False"
                                 help="Create a portal user account for this parent"/>
-                        <button type="object" name="action_view_students"
-                                string="View Students"
-                                class="btn-secondary"
-                                invisible="student_count == 0"/>
                     </header>
                     <sheet>
                         <field name="active" invisible="1"/>
@@ -91,22 +87,11 @@
                         </group>
                         <notebook>
                             <page string="Students" name="students">
-                                <field name="student_ids">
-                                    <list>
-                                        <field name="name"/>
-                                        <field name="course_detail_ids" widget="many2many_tags"/>
-                                        <field name="mobile" optional="show"/>
-                                        <field name="email" optional="show"/>
-                                    </list>
-                                </field>
+                                <field name="student_ids" />
                             </page>
                         </notebook>
                     </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids"/>
-                    </div>
+                    <chatter/>
                 </form>
             </field>
         </record>

@@ -397,17 +397,17 @@ class OpFeesTerms(models.Model):
         self.ensure_one()
         
         # Use cached calculation if available
-        cache_key = f"fee_calc_{self.id}_{student_id}_{course_id}"
-        cached_result = self.env.registry.get(cache_key)
+        # cache_key = f"fee_calc_{self.id}_{student_id}_{course_id}"
+        # cached_result = self.env.registry.get(cache_key)
         
-        if cached_result is not None:
-            return cached_result
+        # if cached_result is not None:
+        #     return cached_result
             
         # Calculate and cache result
         total_amount = self._get_cached_fee_calculation(self.id, student_id, course_id)
         
         # Cache result for 1 hour (3600 seconds)
-        self.env.registry[cache_key] = total_amount
+        # self.env.registry[cache_key] = total_amount
         
         return total_amount
 

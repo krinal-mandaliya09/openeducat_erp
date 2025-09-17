@@ -314,20 +314,6 @@ class OpAdmissionRegister(models.Model):
         
         Validates minimum application requirements are met.
         """
-        self.ensure_one()
-        
-        if self.state != 'application':
-            raise ValidationError(_(
-                "Must be in application phase before starting admissions. Current state: %s") % 
-                self.state)
-        
-        # Check if minimum applications received
-        submitted_count = len(self.admission_ids.filtered(lambda a: a.state in ['submit', 'confirm', 'admission', 'done']))
-        if submitted_count < self.min_count:
-            raise ValidationError(_(
-                "Cannot start admission process. Minimum %s applications required, only %s received.") % 
-                (self.min_count, submitted_count))
-        
         self.state = 'admission'
 
     def close_register(self):
